@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: echo
+  version: '1.0'
+  contact:
+    name: Peter Birkholm-Buch
+    url: 'https://birkholm-buch.dk'
+    email: peterbb@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/echo/{id}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      operationId: get-echo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '':
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - id
+                  - message
+      description: Returns a message by id
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-echo-id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                message:
+                  type: string
+                  minLength: 1
+              required:
+                - message
+    put:
+      summary: ''
+      operationId: put-echo-id
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                message:
+                  type: string
+                  minLength: 1
+              required:
+                - id
+                - message
+components:
+  schemas:
+    message:
+      description: The Echo Message
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - message
