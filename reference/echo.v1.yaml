@@ -20,8 +20,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: '#/components/schemas/message'
+              examples:
+                example:
+                  value:
+                    id: 0
+                    message: string
+          headers: {}
         '':
           content:
             application/json:
@@ -39,12 +44,47 @@ paths:
                   - id
                   - message
       description: Returns a message by id
+    options:
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: '200'
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: '''DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'''
+              method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: when_no_match
+        type: mock
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
+    x-amazon-apigateway-any-method:
+      parameters:
+        - name: proxy
+          in: path
+          required: true
+          schema:
+            type: string
+      x-amazon-apigateway-integration:
+        uri: 'http://cadi.dev.be:2202/resources/translations/{proxy}'
+        httpMethod: ANY
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.path.proxy: method.request.path.proxy
+        passthroughBehavior: when_no_match
+        connectionType: VPC_LINK
+        connectionId: bdaqzv
+        cacheNamespace: 005uqx
+        cacheKeyParameters:
+          - method.request.path.proxy
+        type: http_proxy
     post:
       summary: ''
       operationId: post-echo-id
@@ -92,11 +132,10 @@ components:
       type: object
       properties:
         id:
-          type: string
-          minLength: 1
+          type: integer
+          readOnly: true
         message:
           type: string
-          minLength: 1
       required:
         - id
         - message
