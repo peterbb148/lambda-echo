@@ -7,7 +7,7 @@ info:
     url: 'https://birkholm-buch.dk'
     email: peterbb@gmail.com
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'https://stoplight.io/mocks/peterbb/lambda-echo/7454164'
 paths:
   '/echo/{id}':
     get:
