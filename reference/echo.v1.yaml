@@ -134,6 +134,7 @@ components:
       properties:
         id:
           type: integer
+          minimum: 1
           readOnly: true
         message:
           type: string
