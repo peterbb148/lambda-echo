@@ -1,11 +1,12 @@
 openapi: 3.0.0
 info:
-  title: echo
+  title: Echo API
   version: '1.0'
   contact:
     name: Peter Birkholm-Buch
     url: 'https://birkholm-buch.dk'
     email: peterbb@gmail.com
+  description: Manage your messages!
 servers:
   - url: 'https://stoplight.io/mocks/peterbb/lambda-echo/7454164'
 paths:
