@@ -11,7 +11,7 @@ servers:
 paths:
   '/echo/{id}':
     get:
-      summary: Your GET endpoint
+      summary: Get message by id
       tags: []
       operationId: get-echo
       responses:
@@ -86,7 +86,7 @@ paths:
           - method.request.path.proxy
         type: http_proxy
     post:
-      summary: ''
+      summary: Post new message
       operationId: post-echo-id
       responses:
         '200':
@@ -104,7 +104,7 @@ paths:
               required:
                 - message
     put:
-      summary: ''
+      summary: Update message
       operationId: put-echo-id
       responses:
         '200':
@@ -125,6 +125,20 @@ paths:
               required:
                 - id
                 - message
+  /echo:
+    get:
+      summary: Get all messages
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/message'
+      operationId: get-echo
 components:
   schemas:
     message:
