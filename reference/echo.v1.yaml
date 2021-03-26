@@ -113,6 +113,12 @@ paths:
               required:
                 - id
                 - message
+    delete:
+      summary: ''
+      operationId: delete-echo-id
+      responses:
+        '200':
+          description: OK
   /echo:
     get:
       summary: Get all messages
