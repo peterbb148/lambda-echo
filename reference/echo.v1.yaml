@@ -2,6 +2,7 @@ openapi: 3.0.0
 info:
   title: Echo API
   version: '1.0'
+  basePath: "/v1"
   contact:
     name: Peter Birkholm-Buch
     url: 'https://birkholm-buch.dk'
